@@ -1,0 +1,65 @@
+[
+  {
+    "filename": "ebb17cc96a6b49c189fa604c74e8226d.jpg",
+    "original_filename": "black.jpg",
+    "email": "vaishnavimathapati30@gmail.com",
+    "category": "Tops",
+    "color": "black",
+    "item_name": "black",
+    "created_at": "2026-05-12T05:30:15.835953+00:00"
+  },
+  {
+    "filename": "f8c0ca7f82b94478995d5eafe1ab6864.jpg",
+    "original_filename": "jeans.jpg",
+    "email": "vaishnavimathapati30@gmail.com",
+    "category": "Bottoms",
+    "color": "denim",
+    "item_name": "jeans",
+    "created_at": "2026-05-12T05:31:30.766820+00:00"
+  },
+  {
+    "filename": "045b86290410417ca8687c95329fff79.jpg",
+    "original_filename": "dresses.jpg",
+    "email": "vaishnavimathapati30@gmail.com",
+    "category": "Dresses",
+    "color": "neutral",
+    "item_name": "dresses",
+    "created_at": "2026-05-12T05:32:36.830704+00:00"
+  },
+  {
+    "filename": "15da767be2c949499a5f1482a11c4e98.jpg",
+    "original_filename": "lehanga.jpg",
+    "email": "vaishnavimathapati30@gmail.com",
+    "category": "Traditional",
+    "color": "neutral",
+    "item_name": "lehanga",
+    "created_at": "2026-05-12T05:34:08.459704+00:00"
+  },
+  {
+    "filename": "2645ae5de05c47ad91b3f79c92004c58.jpg",
+    "original_filename": "casual shoes.jpg",
+    "email": "vaishnavimathapati30@gmail.com",
+    "category": "Shoes",
+    "color": "blue",
+    "item_name": "casual shoes",
+    "created_at": "2026-05-12T05:35:04.364201+00:00"
+  },
+  {
+    "filename": "f135a8f4d4674f958bd2cf9d7003f196.jpg",
+    "original_filename": "pendants.jpg",
+    "email": "vaishnavimathapati30@gmail.com",
+    "category": "Accessories",
+    "color": "gold",
+    "item_name": "pendants",
+    "created_at": "2026-05-12T05:36:41.320301+00:00"
+  },
+  {
+    "filename": "df507f4d1b3f47efa879914070ff058a.jpg",
+    "original_filename": "dresses.jpg",
+    "email": "v@123",
+    "category": "Bottoms",
+    "color": "neutral",
+    "item_name": "dresses",
+    "created_at": "2026-05-12T07:17:10.651335+00:00"
+  }
+]
