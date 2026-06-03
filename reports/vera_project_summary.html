@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>VERA Project Summary</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm; }
+    body {
+      margin: 0;
+      color: #222;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+      font-size: 10.5pt;
+    }
+    h1, h2, h3 { color: #171717; margin: 0; }
+    h1 { font-size: 26pt; letter-spacing: 0.02em; }
+    h2 {
+      font-size: 15pt;
+      border-bottom: 1px solid #d8d2c8;
+      padding-bottom: 5px;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      break-after: avoid;
+    }
+    h3 { font-size: 10.5pt; margin-top: 8px; }
+    p { margin: 4px 0 8px; }
+    ul { margin: 4px 0 10px 20px; padding: 0; }
+    li { margin: 2px 0; }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      background: #f5f1eb;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 9pt;
+    }
+    .cover {
+      min-height: 190px;
+      border-bottom: 3px solid #b68b4c;
+      margin-bottom: 18px;
+      padding-top: 10px;
+    }
+    .subtitle { color: #6f665c; font-size: 12pt; margin-top: 8px; }
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 18px;
+      margin-top: 22px;
+      font-size: 9.5pt;
+    }
+    .box {
+      background: #fbf8f3;
+      border: 1px solid #e4ded5;
+      border-radius: 7px;
+      padding: 10px 12px;
+      margin: 8px 0 12px;
+    }
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3px;
+    }
+    .label { font-weight: 700; color: #4b4239; }
+    .status {
+      display: inline-block;
+      background: #efe6d8;
+      border: 1px solid #d5c1a3;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 9pt;
+      color: #4f3b20;
+    }
+    .page-break { break-before: page; }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <h1>VERA Project Summary</h1>
+    <p class="subtitle">Professional engineering handover document for the VERA personal styling and wardrobe assistant application.</p>
+    <div class="meta">
+      <div><span class="label">Repository:</span> <code>veraFinal</code></div>
+      <div><span class="label">Primary frontend:</span> <code>frontend/src</code></div>
+      <div><span class="label">Primary backend:</span> <code>backend/main.py</code></div>
+      <div><span class="label">Database:</span> MongoDB via PyMongo</div>
+      <div><span class="label">Assistant:</span> Offline wardrobe-aware local logic</div>
+      <div><span class="label">Storage:</span> Local uploads served from <code>/uploads</code></div>
+    </div>
+  </section>
+
+  <div class="box">
+    <p><strong>Executive Summary.</strong> VERA is a full-stack personal styling application that supports account creation, onboarding, wardrobe uploads, user preferences, outfit recommendations, AI chat, wishlist management, events, reviews, contact messages, and profile views. The main implementation uses a Vite React frontend and a FastAPI backend connected to MongoDB. A separate Express/Mongoose wardrobe server also exists under <code>server/</code>.</p>
+  </div>
+
+  <h2>1. Project Overview</h2>
+  <div class="section-grid">
+    <p><span class="label">Purpose:</span> Provide a digital wardrobe and styling assistant for authenticated users.</p>
+    <p><span class="label">Files involved:</span> <code>frontend/src/App.tsx</code>, <code>frontend/src/pages/*</code>, <code>frontend/src/lib/cloud.ts</code>, <code>backend/main.py</code>, <code>backend/routes/*</code>, <code>backend/database.py</code>, <code>server/index.js</code>.</p>
+    <p><span class="label">How it works:</span> React pages call API helpers in <code>cloud.ts</code> and auth helpers in <code>AuthContext.tsx</code>. FastAPI routes process requests and persist data in MongoDB collections declared in <code>database.py</code>.</p>
+    <p><span class="label">Current status:</span> <span class="status">MVP/prototype implemented</span> with several complete workflows and some incomplete production features.</p>
+  </div>
+
+  <h2>2. Purpose of the Application</h2>
+  <p><span class="label">Purpose:</span> Help users upload wardrobe items, define style preferences, receive outfit suggestions, and consult an AI stylist.</p>
+  <p><span class="label">Files involved:</span> <code>Home.tsx</code>, <code>Wardrobe.tsx</code>, <code>Outfits.tsx</code>, <code>Chat.tsx</code>, <code>Preferences.tsx</code>, <code>backend/services/recommendation.py</code>, <code>backend/routes/chat.py</code>.</p>
+  <p><span class="label">How it works:</span> The user signs up, completes onboarding, uploads wardrobe items, then uses outfit generation and AI chat features driven by MongoDB wardrobe/preference data.</p>
+  <p><span class="label">Current status:</span> The core application purpose is represented in working code. Chat works through local wardrobe-aware logic without an external AI provider.</p>
+
+  <h2>3. Technology Stack</h2>
+  <p><span class="label">Purpose:</span> Define the runtime, framework, UI, database, and AI technologies used by the project.</p>
+  <p><span class="label">Files involved:</span> <code>frontend/package.json</code>, <code>backend/package.json</code>, <code>backend/requirements.txt</code>, <code>server/package.json</code>.</p>
+  <ul>
+    <li>Frontend: React 18, TypeScript, Vite, React Router, TanStack Query, Tailwind CSS, shadcn/Radix UI, lucide-react, sonner.</li>
+    <li>Backend: FastAPI, Uvicorn, python-multipart, python-dotenv, PyMongo usage in source.</li>
+    <li>Alternate server: Express, Mongoose, Multer, CORS, dotenv.</li>
+    <li>Database: MongoDB.</li>
+    <li>Assistant: Offline local fashion logic in <code>backend/routes/chat.py</code>.</li>
+    <li>Weather: Open-Meteo calls from <code>frontend/src/lib/weather.ts</code>.</li>
+  </ul>
+  <p><span class="label">Current status:</span> The stack is implemented but mixed, with FastAPI and Express backend code coexisting.</p>
+
+  <h2>4. Frontend Architecture</h2>
+  <p><span class="label">Purpose:</span> Provide routing, UI screens, auth state, API integration, and client-side feature workflows.</p>
+  <p><span class="label">Files involved:</span> <code>frontend/src/App.tsx</code>, <code>frontend/src/main.tsx</code>, <code>frontend/src/contexts/AuthContext.tsx</code>, <code>frontend/src/lib/cloud.ts</code>, <code>frontend/src/lib/storage.ts</code>, <code>frontend/src/pages/*</code>, <code>frontend/src/components/*</code>.</p>
+  <p><span class="label">How it works:</span> <code>App.tsx</code> defines public, protected, and onboarding-gated routes. <code>AuthProvider</code> stores the safe user object in localStorage. Pages use <code>cloud.ts</code> for backend calls.</p>
+  <p><span class="label">Current status:</span> Main pages are implemented. Legacy localStorage utilities remain in <code>storage.ts</code>.</p>
+
+  <h2>5. Backend Architecture</h2>
+  <p><span class="label">Purpose:</span> Provide REST APIs for auth, wardrobe, upload, outfits, chat, events, reviews, wishlist, preferences, and contact messages.</p>
+  <p><span class="label">Files involved:</span> <code>backend/main.py</code>, <code>backend/routes/*.py</code>, <code>backend/database.py</code>, <code>backend/schemas.py</code>, <code>backend/services/*</code>.</p>
+  <p><span class="label">How it works:</span> <code>main.py</code> creates the FastAPI app, configures CORS, mounts static uploads, and registers routers. Route modules use PyMongo collections from <code>database.py</code>.</p>
+  <p><span class="label">Current status:</span> FastAPI is the broadest backend implementation. <code>server/index.js</code> is an alternate wardrobe-only Express backend.</p>
+
+  <h2>6. Database Architecture</h2>
+  <p><span class="label">Purpose:</span> Store all persistent user and application data.</p>
+  <p><span class="label">Files involved:</span> <code>backend/database.py</code>, <code>backend/schemas.py</code>, <code>backend/db/wardrobe_store.py</code>, <code>backend/routes/*.py</code>.</p>
+  <p><span class="label">How it works:</span> MongoDB is configured from <code>MONGO_URI</code> and optional <code>MONGO_DB</code>. Collections are accessed directly through PyMongo objects.</p>
+  <p><span class="label">Current status:</span> MongoDB is the active database layer. No relational migrations exist in the inspected code.</p>
+
+  <h2>7. MongoDB Collections</h2>
+  <p><span class="label">Purpose:</span> Define the document stores used by the backend.</p>
+  <p><span class="label">Files involved:</span> <code>backend/database.py</code>, <code>backend/schemas.py</code>, <code>backend/db/wardrobe_store.py</code>, route modules.</p>
+  <ul>
+    <li><code>users</code>: email, name, password_hash, onboarded, created_at, updated_at.</li>
+    <li><code>preferences</code>: email, style, lifestyle, location, restrictions, timestamps.</li>
+    <li><code>wardrobe</code>: filename, email, category, subcategory, color, pattern, style, seasons, occasions, fit, item_name, ai fields, worn_count.</li>
+    <li><code>outfits</code>: email, outfit_name, item_ids, reasoning, occasion, mood, season, scores, saved/worn/liked/disliked flags.</li>
+    <li><code>chat_history</code>: email, message, reply, created_at.</li>
+    <li><code>events</code>: email, date, event, location, created_at.</li>
+    <li><code>reviews</code>: email, rating, title, body, created_at.</li>
+    <li><code>wishlist</code>: email, item_ids, updated_at.</li>
+    <li><code>contact_messages</code>: email, name, contact_email, topic, body, created_at.</li>
+  </ul>
+  <p><span class="label">Current status:</span> Collections and indexes are declared in <code>database.py</code>. Relationships are linked mostly by email and item ID strings.</p>
+
+  <h2>8. Supabase Tables</h2>
+  <p><span class="label">Purpose:</span> Requested area for Supabase schema documentation.</p>
+  <p><span class="label">Files involved:</span> No Supabase client, schema, package, or table implementation was found in the inspected files.</p>
+  <p><span class="label">How it works:</span> Supabase is not used by the current implemented application code.</p>
+  <p><span class="label">Current status:</span> No Supabase tables are implemented.</p>
+
+  <h2>9. Storage Buckets</h2>
+  <p><span class="label">Purpose:</span> Store wardrobe image assets.</p>
+  <p><span class="label">Files involved:</span> <code>backend/config.py</code>, <code>backend/main.py</code>, <code>backend/routes/upload.py</code>, <code>backend/uploads/</code>, <code>server/index.js</code>.</p>
+  <p><span class="label">How it works:</span> FastAPI writes files to <code>backend/uploads</code> and serves them at <code>/uploads</code>. The Express server has its own local <code>uploads</code> directory path.</p>
+  <p><span class="label">Current status:</span> Local filesystem storage is implemented. No Supabase bucket is implemented.</p>
+
+  <h2>10. Authentication System</h2>
+  <p><span class="label">Purpose:</span> Register users, log users in, maintain frontend auth state, and track onboarding completion.</p>
+  <p><span class="label">Files involved:</span> <code>AuthContext.tsx</code>, <code>Login.tsx</code>, <code>Signup.tsx</code>, <code>Onboarding.tsx</code>, <code>backend/routes/auth.py</code>, <code>backend/schemas.py</code>.</p>
+  <p><span class="label">How it works:</span> Backend stores salted PBKDF2-HMAC-SHA256 password hashes. Frontend stores the returned user object in localStorage and protects routes based on that state.</p>
+  <p><span class="label">Current status:</span> Auth is implemented, but it is not token/session based.</p>
+
+  <h2>11. API Architecture</h2>
+  <p><span class="label">Purpose:</span> Expose backend capabilities to the frontend through REST-style endpoints.</p>
+  <p><span class="label">Files involved:</span> <code>backend/main.py</code>, <code>backend/routes/*.py</code>, <code>frontend/src/lib/cloud.ts</code>, <code>frontend/src/contexts/AuthContext.tsx</code>.</p>
+  <p><span class="label">How it works:</span> Most routers are included with the <code>/api</code> prefix. Chat routes are included without the <code>/api</code> prefix.</p>
+  <p><span class="label">Current status:</span> API modules are implemented for the main application domains.</p>
+
+  <h2>12. Wardrobe Management System</h2>
+  <p><span class="label">Purpose:</span> Upload, list, filter, inspect, delete, and mark wardrobe items as worn.</p>
+  <p><span class="label">Files involved:</span> <code>Wardrobe.tsx</code>, <code>cloud.ts</code>, <code>backend/routes/upload.py</code>, <code>backend/routes/wardrobe.py</code>, <code>backend/db/wardrobe_store.py</code>.</p>
+  <p><span class="label">How it works:</span> Frontend sends multipart form data. Backend validates the file and metadata, writes the file locally, inserts a wardrobe document, and returns normalized item data.</p>
+  <p><span class="label">Current status:</span> Implemented with manual category/subcategory metadata. AI visual classification is not implemented.</p>
+
+  <h2>13. Outfit Recommendation System</h2>
+  <p><span class="label">Purpose:</span> Generate wardrobe-based outfits for occasion, mood, and season.</p>
+  <p><span class="label">Files involved:</span> <code>backend/services/recommendation.py</code>, <code>backend/routes/outfits.py</code>, <code>Outfits.tsx</code>, <code>cloud.ts</code>, <code>frontend/src/lib/recommendation.ts</code>, <code>frontend/src/lib/recommendations.ts</code>.</p>
+  <p><span class="label">How it works:</span> Backend groups items by category, builds combinations, scores them for color harmony, style compatibility, occasion, season, preferences, and feedback, then returns ranked outfits.</p>
+  <p><span class="label">Current status:</span> Backend recommendation logic is implemented. Frontend also contains separate recommendation code.</p>
+
+  <h2>14. AI Features</h2>
+  <p><span class="label">Purpose:</span> Provide AI stylist conversation and planned AI wardrobe metadata support.</p>
+  <p><span class="label">Files involved:</span> <code>backend/routes/chat.py</code>, <code>Chat.tsx</code>, <code>cloud.ts</code>, <code>backend/config.py</code>.</p>
+  <p><span class="label">How it works:</span> Chat uses local wardrobe-aware logic, MongoDB wardrobe data, preferences, outfit history, and the recommendation engine, then stores replies in <code>chat_history</code>.</p>
+  <p><span class="label">Current status:</span> Offline chat is implemented. Upload image analysis is not implemented.</p>
+
+  <h2>15. Upload & Image Processing Flow</h2>
+  <p><span class="label">Purpose:</span> Accept wardrobe image uploads and create wardrobe records.</p>
+  <p><span class="label">Files involved:</span> <code>Wardrobe.tsx</code>, <code>cloud.ts</code>, <code>backend/routes/upload.py</code>, <code>backend/config.py</code>, <code>backend/uploads/</code>.</p>
+  <p><span class="label">How it works:</span> Backend checks required email/category, validates file extension and size, saves a UUID-named file, and inserts metadata into MongoDB.</p>
+  <p><span class="label">Current status:</span> Upload storage is implemented. Resizing, compression, and AI classification are not implemented in FastAPI.</p>
+
+  <h2>16. Chat System</h2>
+  <p><span class="label">Purpose:</span> Enable natural-language styling support.</p>
+  <p><span class="label">Files involved:</span> <code>Chat.tsx</code>, <code>cloud.ts</code>, <code>backend/routes/chat.py</code>, <code>backend/database.py</code>.</p>
+  <p><span class="label">How it works:</span> Frontend loads history and sends messages. Backend sanitizes email, reads wardrobe/preference/outfit data, generates a local styling reply, stores message/reply records, and returns the response.</p>
+  <p><span class="label">Current status:</span> Implemented without external AI configuration.</p>
+
+  <h2>17. User Preference System</h2>
+  <p><span class="label">Purpose:</span> Store style preferences for onboarding, profile display, and recommendations.</p>
+  <p><span class="label">Files involved:</span> <code>Onboarding.tsx</code>, <code>Preferences.tsx</code>, <code>Profile.tsx</code>, <code>cloud.ts</code>, <code>backend/routes/preferences.py</code>, <code>backend/schemas.py</code>.</p>
+  <p><span class="label">How it works:</span> Preferences are saved by email using <code>PUT /api/preferences/{email}</code> and read using <code>GET /api/preferences/{email}</code>.</p>
+  <p><span class="label">Current status:</span> Implemented and used across profile, home, and recommendation workflows.</p>
+
+  <h2>18. Data Flow Architecture</h2>
+  <p><span class="label">Purpose:</span> Describe movement of data through UI, API, storage, database, and AI services.</p>
+  <p><span class="label">Files involved:</span> <code>cloud.ts</code>, <code>AuthContext.tsx</code>, <code>backend/main.py</code>, <code>backend/routes/*</code>, <code>backend/database.py</code>, <code>backend/services/*</code>.</p>
+  <p><span class="label">How it works:</span> User action in React -> helper in <code>cloud.ts</code> or <code>AuthContext.tsx</code> -> FastAPI route -> MongoDB or local uploads -> normalized response -> frontend state update. Chat uses local backend logic. Weather is frontend-only through Open-Meteo.</p>
+  <p><span class="label">Current status:</span> Main flows are centralized around <code>cloud.ts</code>, with legacy localStorage utilities still present.</p>
+
+  <h2>19. Current Implementation Status</h2>
+  <p><span class="label">Purpose:</span> Summarize overall delivery maturity.</p>
+  <p><span class="label">Files involved:</span> Entire inspected repository source.</p>
+  <p><span class="label">How it works:</span> The project contains a complete MVP-style React/FastAPI/MongoDB vertical slice.</p>
+  <p><span class="label">Current status:</span> Suitable for final-year project demonstration and technical review. Additional hardening is needed for production.</p>
+
+  <h2>20. Features Completed</h2>
+  <p><span class="label">Purpose:</span> Document implemented capabilities.</p>
+  <p><span class="label">Files involved:</span> <code>frontend/src/pages/*</code>, <code>frontend/src/lib/cloud.ts</code>, <code>backend/routes/*</code>, <code>backend/services/*</code>.</p>
+  <ul>
+    <li>Signup, login, onboarding, and protected routing.</li>
+    <li>Wardrobe upload, listing, deletion, and worn count update.</li>
+    <li>Preferences create/update/read.</li>
+    <li>Profile overview.</li>
+    <li>Events, reviews, wishlist, and contact message flows.</li>
+    <li>Offline wardrobe-aware chat path.</li>
+    <li>Deterministic outfit recommendation engine.</li>
+  </ul>
+  <p><span class="label">Current status:</span> These features are represented in working source code.</p>
+
+  <h2>21. Features In Progress</h2>
+  <p><span class="label">Purpose:</span> Document incomplete but visible feature areas.</p>
+  <p><span class="label">Files involved:</span> <code>Profile.tsx</code>, <code>cloud.ts</code>, <code>backend/routes/upload.py</code>, <code>backend/services/recommendation.py</code>.</p>
+  <ul>
+    <li>Profile avatar persistence is marked TODO in <code>Profile.tsx</code>.</li>
+    <li>Collage generation rejects because it is not available in the local backend.</li>
+    <li>AI wardrobe image analysis is not implemented despite <code>ai_analyzed</code> metadata.</li>
+    <li>Recommendation logic exists in both frontend and backend.</li>
+  </ul>
+  <p><span class="label">Current status:</span> These areas require implementation or consolidation.</p>
+
+  <h2>22. Known Issues</h2>
+  <p><span class="label">Purpose:</span> Provide handover context for behaviors requiring attention.</p>
+  <p><span class="label">Files involved:</span> <code>backend/routes/outfits.py</code>, <code>Signup.tsx</code>, <code>Profile.tsx</code>, <code>Wishlist.tsx</code>, <code>cloud.ts</code>, <code>backend/routes/upload.py</code>.</p>
+  <ul>
+    <li><code>backend/routes/outfits.py</code>: route order can cause <code>/api/outfits/recommend/{email}</code> to be matched by <code>/{email}</code>.</li>
+    <li><code>backend/routes/outfits.py</code>: response mapping uses <code>reason</code> while schema defines <code>reasoning</code>.</li>
+    <li><code>Signup.tsx</code>: frontend allows 6-character passwords while backend requires 8.</li>
+    <li><code>Profile.tsx</code>: avatar add/remove does not persist to backend.</li>
+    <li><code>cloud.ts</code>: collage generation is explicitly unavailable.</li>
+    <li><code>Wishlist.tsx</code>: uses legacy wardrobe field names in rendering.</li>
+    <li><code>upload.py</code> and <code>Wardrobe.tsx</code>: backend and frontend upload size limits differ.</li>
+  </ul>
+  <p><span class="label">Current status:</span> These are known handover items, not blockers for project demonstration.</p>
+
+  <h2>23. Technical Strengths</h2>
+  <p><span class="label">Purpose:</span> Highlight strong implementation choices.</p>
+  <p><span class="label">Files involved:</span> <code>database.py</code>, <code>schemas.py</code>, <code>auth.py</code>, <code>recommendation.py</code>, <code>cloud.ts</code>, <code>App.tsx</code>.</p>
+  <ul>
+    <li>Domain-based FastAPI route separation.</li>
+    <li>Pydantic validation for backend request/response models.</li>
+    <li>Salted PBKDF2 password hashing.</li>
+    <li>MongoDB indexes for common lookup fields.</li>
+    <li>Centralized frontend API layer in <code>cloud.ts</code>.</li>
+    <li>Explainable deterministic outfit scoring.</li>
+    <li>Clear protected-route and onboarding gate logic.</li>
+  </ul>
+  <p><span class="label">Current status:</span> The project has a solid MVP engineering foundation.</p>
+
+  <h2>24. Future Improvements</h2>
+  <p><span class="label">Purpose:</span> Define practical next steps for production readiness.</p>
+  <p><span class="label">Files involved:</span> <code>auth.py</code>, <code>AuthContext.tsx</code>, <code>upload.py</code>, <code>recommendation.py</code>, <code>cloud.ts</code>, <code>server/index.js</code>.</p>
+  <ul>
+    <li>Add token/session-based authentication.</li>
+    <li>Choose one backend path: FastAPI or Express.</li>
+    <li>Consolidate duplicated frontend source under <code>frontend/src</code> and <code>backend/src</code>.</li>
+    <li>Implement real AI image analysis for uploads.</li>
+    <li>Persist profile avatars through backend APIs.</li>
+    <li>Implement or remove collage generation UI.</li>
+    <li>Unify recommendation logic between frontend and backend.</li>
+    <li>Add automated tests for backend routes and frontend workflows.</li>
+    <li>Clarify Supabase plans, since current source uses MongoDB and local filesystem storage.</li>
+  </ul>
+  <p><span class="label">Current status:</span> Recommended improvements are clear and actionable for the next development phase.</p>
+</body>
+</html>
