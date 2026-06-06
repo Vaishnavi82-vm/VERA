@@ -16,9 +16,11 @@ router = APIRouter(tags=["wardrobe"])
 
 @router.get("/wardrobe")
 def get_wardrobe(email: str = Query(..., min_length=1, description="User email (same as client auth)")) -> Dict[str, Any]:
-    logger.debug("Wardrobe request received for email=%s", email)
-    items: List[Dict[str, Any]] = list_wardrobe_for_user(email)
-    logger.info("Loaded %d wardrobe items for email=%s", len(items), email)
+    # Normalize email to lowercase for consistent MongoDB queries
+    email_lower = email.strip().lower()
+    logger.debug("Wardrobe request received for email=%s", email_lower)
+    items: List[Dict[str, Any]] = list_wardrobe_for_user(email_lower)
+    logger.info("Loaded %d wardrobe items for email=%s", len(items), email_lower)
     return {"items": items, "count": len(items)}
 
 
