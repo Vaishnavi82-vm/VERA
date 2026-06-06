@@ -98,6 +98,7 @@ def append_upload_record(
     item_name: str,
 ):
     user_id = normalize_user_id(email)
+    now = datetime.now(timezone.utc).isoformat()
 
     normalized_category = _normalize_category(category)
     record = {
@@ -118,6 +119,8 @@ def append_upload_record(
         "worn_count": 0,
         "primary_color": color.strip() or None,
         "aesthetic": "",
+        "created_at": now,
+        "updated_at": now,
     }
 
     result = wardrobe_collection.insert_one(record)
