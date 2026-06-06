@@ -1,6 +1,7 @@
 """Wardrobe image upload: save file + metadata per user."""
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Any, Dict
 from uuid import uuid4
@@ -61,7 +62,24 @@ async def upload_image(
         item_name=item_name or (file.filename or ""),
     )
 
-    image_url = f"{request.url.scheme}://{request.url.hostname}:{request.url.port}/uploads/{stored_name}"
+    # Build image URL: use BASE_URL env var or construct from request
+    base_url = os.getenv("BASE_URL")
+    if not base_url:
+        # Construct from request, handling None port gracefully
+        scheme = request.url.scheme
+        hostname = request.url.hostname or "localhost"
+        port = request.url.port
+        
+        # Only include port if it's not default (80 for http, 443 for https)
+        if port and (
+            (scheme == "http" and port != 80) or
+            (scheme == "https" and port != 443)
+        ):
+            base_url = f"{scheme}://{hostname}:{port}"
+        else:
+            base_url = f"{scheme}://{hostname}"
+    
+    image_url = f"{base_url}/uploads/{stored_name}"
     now = datetime.now(timezone.utc).isoformat()
 
     return {
@@ -85,5 +103,5 @@ async def upload_image(
         "worn_count": int(record.get("worn_count", 0)),
         "last_worn_at": None,
         "is_favorite": False,
-        "created_at": now,
+        "created_at": record.get("created_at", now),
     }
